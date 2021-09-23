@@ -1,29 +1,13 @@
-package br.com.alura.bookstore.model;
+package br.com.alura.bookstore.dto;
 
 import java.time.LocalDate;
 
-public class Author {
+public class AuthorsFormDto {
 
 	private String name;
 	private String email;
 	private LocalDate birthDate;
 	private String curriculo;
-
-	@Override
-	public String toString() {
-		return "Author [name=" + name + ", email=" + email + ", birthDate=" + birthDate + ", curriculo=" + curriculo
-				+ "]";
-	}
-
-	public Author() {
-	}
-
-	public Author(String name, String email, LocalDate birthDate, String curriculo) {
-		this.name = name;
-		this.email = email;
-		this.birthDate = birthDate;
-		this.curriculo = curriculo;
-	}
 
 	public String getName() {
 		return name;
