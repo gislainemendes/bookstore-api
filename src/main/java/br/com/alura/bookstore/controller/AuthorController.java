@@ -15,6 +15,8 @@ import br.com.alura.bookstore.dto.AuthorsDto;
 import br.com.alura.bookstore.dto.AuthorsFormDto;
 import br.com.alura.bookstore.model.Author;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/authors")
 public class AuthorController {
@@ -28,7 +30,7 @@ public class AuthorController {
 	}
 
 	@PostMapping
-	public void toSave(@RequestBody AuthorsFormDto dto) {
+	public void toSave(@RequestBody @Valid AuthorsFormDto dto) {
 		Author author = modelMapper.map(dto, Author.class);
 		authors.add(author);
 	}
