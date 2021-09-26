@@ -14,4 +14,5 @@ public class BooksDto {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private LocalDate releaseDate;
     private Integer numberOfPages;
+    private String author;
 }
