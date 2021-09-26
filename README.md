@@ -1,4 +1,4 @@
-# API WEB PARA GESTÃO DE LIVRARIA ONLINE
+# API PARA GESTÃO DE LIVRARIA ONLINE
 
 Projeto proposto para o Bootcamp de Java da ALURA CURSOS
 
