@@ -14,6 +14,6 @@ public class Book {
     private String title;
     private LocalDate releaseDate;
     private Integer numberOfPages;
-    private String author;
+    private Author author;
 
 }
