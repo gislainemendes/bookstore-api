@@ -26,4 +26,12 @@ public class AuthorService {
         Author author = modelMapper.map(dto, Author.class);
         authors.add(author);
     }
+
+    public Author findAuthorByName(String name){
+        return authors.stream().filter(author -> author
+                .getName()
+                .equals(name))
+                .findFirst()
+                .orElseThrow(()-> new IllegalArgumentException("Author doesn't exist!"));
+    }
 }
