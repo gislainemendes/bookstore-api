@@ -16,9 +16,16 @@ public class Book {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
+
+    @Column(name = "title")
     private String title;
+
+    @Column(name = "releaseDate")
     private LocalDate releaseDate;
+
+    @Column(name = "numberOfPages")
     private Integer numberOfPages;
 
     @ManyToOne
