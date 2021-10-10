@@ -29,10 +29,11 @@ public class BookService {
     }
 
     @Transactional
-    public void toSave(BooksFormDto dto) {
+    public BooksDto toSave(BooksFormDto dto) {
         Author author = authorService.findAuthorByName(dto.getAuthor());
         Book book = modelMapper.map(dto, Book.class);
         book.setAuthor(author);
         bookRepository.save(book);
+        return modelMapper.map(book, BooksDto.class);
     }
 }

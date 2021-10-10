@@ -10,6 +10,7 @@ import java.time.LocalDate;
 @Setter
 public class BooksDto {
 
+    private Long id;
     private String title;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private LocalDate releaseDate;

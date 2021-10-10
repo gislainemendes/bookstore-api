@@ -6,9 +6,12 @@ import br.com.alura.bookstore.service.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.Valid;
+import java.net.URI;
 
 @RestController
 @RequestMapping("/authors")
@@ -23,7 +26,11 @@ public class AuthorController {
     }
 
     @PostMapping
-    public void toSave(@RequestBody @Valid AuthorsFormDto dto) {
-        authorService.toSave(dto);
+    public ResponseEntity<AuthorsDto> toSave(@RequestBody @Valid AuthorsFormDto dto,
+                                             UriComponentsBuilder uriBuilder) {
+        AuthorsDto authorsDto = authorService.toSave(dto);
+
+        URI uri = uriBuilder.path("/authors/{id}").buildAndExpand(authorsDto.getId()).toUri();
+        return ResponseEntity.created(uri).body(authorsDto);
     }
 }

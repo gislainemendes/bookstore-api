@@ -26,9 +26,10 @@ public class AuthorService {
     }
 
     @Transactional
-    public void toSave(AuthorsFormDto dto) {
+    public AuthorsDto toSave(AuthorsFormDto dto) {
         Author author = modelMapper.map(dto, Author.class);
         authorRepository.save(author);
+        return modelMapper.map(author, AuthorsDto.class);
     }
 
     public Author findAuthorByName(String name) {
