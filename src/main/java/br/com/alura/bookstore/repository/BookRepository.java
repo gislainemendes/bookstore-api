@@ -1,4 +1,4 @@
-package br.com.alura.bookstore.dao;
+package br.com.alura.bookstore.repository;
 
 import br.com.alura.bookstore.model.Book;
 import org.springframework.data.jpa.repository.JpaRepository;

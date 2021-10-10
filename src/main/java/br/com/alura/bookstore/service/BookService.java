@@ -1,6 +1,6 @@
 package br.com.alura.bookstore.service;
 
-import br.com.alura.bookstore.dao.BookRepository;
+import br.com.alura.bookstore.repository.BookRepository;
 import br.com.alura.bookstore.dto.BooksDto;
 import br.com.alura.bookstore.dto.BooksFormDto;
 import br.com.alura.bookstore.model.Author;
