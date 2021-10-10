@@ -4,6 +4,8 @@ import br.com.alura.bookstore.dto.AuthorsDto;
 import br.com.alura.bookstore.dto.AuthorsFormDto;
 import br.com.alura.bookstore.service.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -17,8 +19,8 @@ public class AuthorController {
     private AuthorService authorService;
 
     @GetMapping
-    public List<AuthorsDto> toList() {
-        return authorService.toList();
+    public Page<AuthorsDto> toList(Pageable pageable) {
+        return authorService.toList(pageable);
     }
 
     @PostMapping

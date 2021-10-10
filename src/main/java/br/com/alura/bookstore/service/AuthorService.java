@@ -6,6 +6,8 @@ import br.com.alura.bookstore.model.Author;
 import br.com.alura.bookstore.repository.AuthorRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -19,9 +21,9 @@ public class AuthorService {
     private AuthorRepository authorRepository;
     private ModelMapper modelMapper = new ModelMapper();
 
-    public List<AuthorsDto> toList() {
-        List<Author> authors = authorRepository.findAll();
-        return authors.stream().map(a -> modelMapper.map(a, AuthorsDto.class)).collect(Collectors.toList());
+    public Page<AuthorsDto> toList(Pageable pageable) {
+        Page<Author> authors = authorRepository.findAll(pageable);
+        return authors.map(a -> modelMapper.map(a, AuthorsDto.class));
     }
 
     @Transactional
