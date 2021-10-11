@@ -12,14 +12,15 @@ import java.time.LocalDate;
 public class BooksFormDto {
 
     @NotBlank
-    @Size(min=10)
+    @Size(min=10, message = "Quantidade min permitida é de 10 caracteres")
     private String title;
 
     @NotNull
-    @PastOrPresent
+    @PastOrPresent(message = "Data não pode ser posterior a data de hoje!")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private LocalDate releaseDate;
 
+    @NotNull
     @Min(100)
     private Integer numberOfPages;
 

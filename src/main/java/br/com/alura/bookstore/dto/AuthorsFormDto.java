@@ -16,13 +16,16 @@ public class AuthorsFormDto {
 
     @NotBlank
     private String name;
+
     @NotBlank
     private String email;
+
     @NotNull
-    @PastOrPresent
+    @PastOrPresent(message = "Data não pode ser posterior a data de hoje!")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private LocalDate birthDate;
-    @Size(max=180)
+
+    @Size(max=180, message = "Quantidade máx permitida é de 180 caracteres")
     @NotBlank
     private String curriculo;
 
