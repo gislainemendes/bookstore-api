@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.net.URI;
 
 @RestController
@@ -33,4 +35,16 @@ public class AuthorController {
         URI uri = uriBuilder.path("/authors/{id}").buildAndExpand(authorsDto.getId()).toUri();
         return ResponseEntity.created(uri).body(authorsDto);
     }
+
+    /*
+      @RequestBody
+      @RequestParam
+      @PathVariable
+     */
+    @DeleteMapping("/id/{id}")
+    public ResponseEntity<Void> toDelete(@PathVariable(value="id") @NotNull Long id) {
+        authorService.toDelete(id);
+        return ResponseEntity.ok().build();
+    }
+
 }

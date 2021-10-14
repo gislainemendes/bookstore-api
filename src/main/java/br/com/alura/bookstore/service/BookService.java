@@ -12,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 public class BookService {
@@ -36,4 +37,10 @@ public class BookService {
         bookRepository.save(book);
         return modelMapper.map(book, BooksDto.class);
     }
+
+    public void toDelete(Long id) {
+        bookRepository.deleteById(id);
+    }
+
+
 }

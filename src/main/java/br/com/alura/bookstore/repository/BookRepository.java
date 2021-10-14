@@ -21,4 +21,6 @@ public interface BookRepository extends JpaRepository <Book, Long> {
             " a.id = b.author.id  " +
             " group by b.author.id")
     List<BooksReportDto> booksByAuthorReport();
+
+    void deleteByAuthor_Id(Long id);
 }
