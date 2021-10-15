@@ -41,6 +41,20 @@ public class AuthorController {
         return ResponseEntity.created(uri).body(authorsDto);
     }
 
+    @PutMapping("/id/{id}")
+    public ResponseEntity<AuthorsDto> updateAuthor(@RequestBody @Valid AuthorsFormDto dto,
+                                                   @PathVariable(value = "id") @NotNull Long id){
+        Optional<AuthorsDto> optionalAuthorDto = authorService.updateAuthors(dto, id);
+
+        if(optionalAuthorDto.isPresent()){
+            AuthorsDto authorsDto = optionalAuthorDto.get();
+            return ResponseEntity.ok(authorsDto);
+        }
+        return ResponseEntity.notFound().build();
+
+
+    }
+
     /*
       @RequestBody
       @RequestParam

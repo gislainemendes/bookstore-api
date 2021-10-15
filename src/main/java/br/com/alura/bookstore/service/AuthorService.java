@@ -40,11 +40,32 @@ public class AuthorService {
         return author.map(a -> modelMapper.map(a, AuthorsDto.class));
     }
 
+    public Author findAuthorByName(String name) {
+        List<Author> authors = authorRepository.findAll();
+        return authors.stream().filter(author -> author
+                        .getName()
+                        .equals(name))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("Author doesn't exist!"));
+    }
+
     @Transactional
     public AuthorsDto saveAuthors(AuthorsFormDto dto) {
         Author author = modelMapper.map(dto, Author.class);
         authorRepository.save(author);
         return modelMapper.map(author, AuthorsDto.class);
+    }
+
+    public Optional<AuthorsDto> updateAuthors(AuthorsFormDto dto, Long id){
+        return authorRepository.findById(id)
+                .map(update -> {
+                    update.setName(dto.getName());
+                    update.setEmail(dto.getEmail());
+                    update.setBirthDate(dto.getBirthDate());
+                    update.setCurriculo(dto.getCurriculo());
+                    Author updatedAuthor = authorRepository.save(update);
+                    return modelMapper.map(updatedAuthor, AuthorsDto.class);
+                });
     }
 
     @Transactional
@@ -54,12 +75,4 @@ public class AuthorService {
         authorRepository.deleteById(id);
     }
 
-    public Author findAuthorByName(String name) {
-        List<Author> authors = authorRepository.findAll();
-        return authors.stream().filter(author -> author
-                        .getName()
-                        .equals(name))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("Author doesn't exist!"));
-    }
 }
