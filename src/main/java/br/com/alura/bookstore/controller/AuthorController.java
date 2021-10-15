@@ -24,7 +24,7 @@ public class AuthorController {
 
     @GetMapping
     public Page<AuthorsDto> getAllAuthorsById(Pageable pageable) {
-        return authorService.toList(pageable);
+        return authorService.findAllAuthors(pageable);
     }
 
     @GetMapping("/id/{id}")
@@ -35,7 +35,7 @@ public class AuthorController {
     @PostMapping
     public ResponseEntity<AuthorsDto> saveAuthor(@RequestBody @Valid AuthorsFormDto dto,
                                                  UriComponentsBuilder uriBuilder) {
-        AuthorsDto authorsDto = authorService.toSave(dto);
+        AuthorsDto authorsDto = authorService.saveAuthors(dto);
 
         URI uri = uriBuilder.path("/authors/{id}").buildAndExpand(authorsDto.getId()).toUri();
         return ResponseEntity.created(uri).body(authorsDto);
@@ -48,7 +48,7 @@ public class AuthorController {
      */
     @DeleteMapping("/id/{id}")
     public ResponseEntity<Void> deleteAuthor(@PathVariable(value = "id") @NotNull Long id) {
-        authorService.toDelete(id);
+        authorService.deleteAuthors(id);
         return ResponseEntity.ok().build();
     }
 

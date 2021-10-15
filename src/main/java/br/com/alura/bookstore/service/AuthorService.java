@@ -30,18 +30,18 @@ public class AuthorService {
         this.bookRepository = bookRepository;
     }
 
-    public Page<AuthorsDto> toList(Pageable pageable) {
+    public Page<AuthorsDto> findAllAuthors(Pageable pageable) {
         Page<Author> authors = authorRepository.findAll(pageable);
         return authors.map(a -> modelMapper.map(a, AuthorsDto.class));
     }
 
-    public Optional<AuthorsDto> findAuthorById(Long id){
+    public Optional<AuthorsDto> findAuthorById(Long id) {
         Optional<Author> author = authorRepository.findById(id);
         return author.map(a -> modelMapper.map(a, AuthorsDto.class));
     }
 
     @Transactional
-    public AuthorsDto toSave(AuthorsFormDto dto) {
+    public AuthorsDto saveAuthors(AuthorsFormDto dto) {
         Author author = modelMapper.map(dto, Author.class);
         authorRepository.save(author);
         return modelMapper.map(author, AuthorsDto.class);
@@ -49,7 +49,7 @@ public class AuthorService {
 
     @Transactional
     @Modifying
-    public void toDelete(Long id) {
+    public void deleteAuthors(Long id) {
         bookRepository.deleteByAuthor_Id(id);
         authorRepository.deleteById(id);
     }
