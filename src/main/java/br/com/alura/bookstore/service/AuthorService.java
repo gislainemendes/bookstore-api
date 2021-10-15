@@ -3,7 +3,6 @@ package br.com.alura.bookstore.service;
 import br.com.alura.bookstore.dto.AuthorsDto;
 import br.com.alura.bookstore.dto.AuthorsFormDto;
 import br.com.alura.bookstore.model.Author;
-import br.com.alura.bookstore.model.Book;
 import br.com.alura.bookstore.repository.AuthorRepository;
 import br.com.alura.bookstore.repository.BookRepository;
 import org.modelmapper.ModelMapper;
@@ -15,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AuthorService {
@@ -33,6 +33,11 @@ public class AuthorService {
     public Page<AuthorsDto> toList(Pageable pageable) {
         Page<Author> authors = authorRepository.findAll(pageable);
         return authors.map(a -> modelMapper.map(a, AuthorsDto.class));
+    }
+
+    public Optional<AuthorsDto> findAuthorById(Long id){
+        Optional<Author> author = authorRepository.findById(id);
+        return author.map(a -> modelMapper.map(a, AuthorsDto.class));
     }
 
     @Transactional

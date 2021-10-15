@@ -15,6 +15,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.net.URI;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/books")
@@ -26,6 +27,11 @@ public class BookController {
     @GetMapping
     public Page<BooksDto> toList(Pageable pageable) {
         return bookService.toList(pageable);
+    }
+
+    @GetMapping("/id/{id}")
+    public Optional<BooksDto> getBookById(@PathVariable(value="id") @NotNull Long id){
+        return bookService.findBookById(id);
     }
 
     @PostMapping

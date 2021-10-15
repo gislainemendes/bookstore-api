@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.Valid;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.net.URI;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/authors")
@@ -25,6 +25,11 @@ public class AuthorController {
     @GetMapping
     public Page<AuthorsDto> toList(Pageable pageable) {
         return authorService.toList(pageable);
+    }
+
+    @GetMapping("/id/{id}")
+    public Optional<AuthorsDto> getAuthorById(@PathVariable(value="id") @NotNull Long id){
+        return authorService.findAuthorById(id);
     }
 
     @PostMapping
