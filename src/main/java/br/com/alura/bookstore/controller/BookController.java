@@ -1,7 +1,5 @@
 package br.com.alura.bookstore.controller;
 
-import br.com.alura.bookstore.dto.AuthorsDto;
-import br.com.alura.bookstore.dto.AuthorsFormDto;
 import br.com.alura.bookstore.dto.BooksDto;
 import br.com.alura.bookstore.dto.BooksFormDto;
 import br.com.alura.bookstore.service.BookService;
@@ -25,8 +23,8 @@ public class BookController {
     private BookService bookService;
 
     @GetMapping
-    public Page<BooksDto> toList(Pageable pageable) {
-        return bookService.toList(pageable);
+    public Page<BooksDto> getAllBooks(Pageable pageable) {
+        return bookService.findAllBooks(pageable);
     }
 
     @GetMapping("/id/{id}")
@@ -35,17 +33,17 @@ public class BookController {
     }
 
     @PostMapping
-    public ResponseEntity<BooksDto> toSave(@RequestBody @Valid BooksFormDto dto,
+    public ResponseEntity<BooksDto> saveBook(@RequestBody @Valid BooksFormDto dto,
                                              UriComponentsBuilder uriBuilder) {
-        BooksDto booksDto = bookService.toSave(dto);
+        BooksDto booksDto = bookService.saveBook(dto);
 
         URI uri = uriBuilder.path("/books/{id}").buildAndExpand(booksDto.getId()).toUri();
         return ResponseEntity.created(uri).body(booksDto);
     }
 
     @DeleteMapping("/id/{id}")
-    public ResponseEntity<Void> toDelete(@PathVariable(value="id") @NotNull Long id) {
-        bookService.toDelete(id);
+    public ResponseEntity<Void> deleteBook(@PathVariable(value="id") @NotNull Long id) {
+        bookService.deleteBook(id);
         return ResponseEntity.ok().build();
     }
 
