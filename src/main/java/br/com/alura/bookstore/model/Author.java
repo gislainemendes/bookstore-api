@@ -31,4 +31,10 @@ public class Author {
     @Column(name = "curriculo")
     private String curriculo;
 
+    public void updateAuthorInformation(String name, String email, LocalDate birthDate, String curriculo) {
+        this.name = name;
+        this.email = email;
+        this.birthDate = birthDate;
+        this.curriculo = curriculo;
+    }
 }

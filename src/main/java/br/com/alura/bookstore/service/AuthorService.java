@@ -2,6 +2,7 @@ package br.com.alura.bookstore.service;
 
 import br.com.alura.bookstore.dto.AuthorsDto;
 import br.com.alura.bookstore.dto.AuthorsFormDto;
+import br.com.alura.bookstore.dto.UpdateAuthorsFormDto;
 import br.com.alura.bookstore.model.Author;
 import br.com.alura.bookstore.repository.AuthorRepository;
 import br.com.alura.bookstore.repository.BookRepository;
@@ -35,9 +36,9 @@ public class AuthorService {
         return authors.map(a -> modelMapper.map(a, AuthorsDto.class));
     }
 
-    public Optional<AuthorsDto> findAuthorById(Long id) {
-        Optional<Author> author = authorRepository.findById(id);
-        return author.map(a -> modelMapper.map(a, AuthorsDto.class));
+    public AuthorsDto findAuthorById(Long id) {
+        Author author = authorRepository.getById(id);
+        return modelMapper.map(author, AuthorsDto.class);
     }
 
     public Author findAuthorByName(String name) {
@@ -56,16 +57,11 @@ public class AuthorService {
         return modelMapper.map(author, AuthorsDto.class);
     }
 
-    public Optional<AuthorsDto> updateAuthors(AuthorsFormDto dto, Long id){
-        return authorRepository.findById(id)
-                .map(update -> {
-                    update.setName(dto.getName());
-                    update.setEmail(dto.getEmail());
-                    update.setBirthDate(dto.getBirthDate());
-                    update.setCurriculo(dto.getCurriculo());
-                    Author updatedAuthor = authorRepository.save(update);
-                    return modelMapper.map(updatedAuthor, AuthorsDto.class);
-                });
+    @Transactional
+    public AuthorsDto updateAuthors(UpdateAuthorsFormDto dto) {
+        Author author = authorRepository.getById(dto.getId());
+        author.updateAuthorInformation(dto.getName(), dto.getEmail(), dto.getBirthDate(), dto.getCurriculo());
+        return modelMapper.map(author, AuthorsDto.class);
     }
 
     @Transactional

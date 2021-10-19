@@ -2,6 +2,7 @@ package br.com.alura.bookstore.controller;
 
 import br.com.alura.bookstore.dto.AuthorsDto;
 import br.com.alura.bookstore.dto.AuthorsFormDto;
+import br.com.alura.bookstore.dto.UpdateAuthorsFormDto;
 import br.com.alura.bookstore.service.AuthorService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -33,8 +34,9 @@ public class AuthorController {
 
     @GetMapping("/id/{id}")
     @ApiOperation("Author details")
-    public Optional<AuthorsDto> getAuthorById(@PathVariable(value = "id") @NotNull Long id) {
-        return authorService.findAuthorById(id);
+    public ResponseEntity<AuthorsDto> getAuthorById(@PathVariable @NotNull Long id) {
+        AuthorsDto dto = authorService.findAuthorById(id);
+        return ResponseEntity.ok(dto);
     }
 
     @PostMapping
@@ -47,31 +49,18 @@ public class AuthorController {
         return ResponseEntity.created(uri).body(authorsDto);
     }
 
-    @PutMapping("/id/{id}")
+    @PutMapping
     @ApiOperation("Update an author")
-    public ResponseEntity<AuthorsDto> updateAuthor(@RequestBody @Valid AuthorsFormDto dto,
-                                                   @PathVariable(value = "id") @NotNull Long id){
-        Optional<AuthorsDto> optionalAuthorDto = authorService.updateAuthors(dto, id);
-
-        if(optionalAuthorDto.isPresent()){
-            AuthorsDto authorsDto = optionalAuthorDto.get();
-            return ResponseEntity.ok(authorsDto);
-        }
-        return ResponseEntity.notFound().build();
-
-
+    public ResponseEntity<AuthorsDto> updateAuthor(@RequestBody @Valid UpdateAuthorsFormDto dto) {
+        AuthorsDto updateAuthorsDto = authorService.updateAuthors(dto);
+        return ResponseEntity.ok(updateAuthorsDto);
     }
 
-    /*
-      @RequestBody
-      @RequestParam
-      @PathVariable
-     */
     @DeleteMapping("/id/{id}")
     @ApiOperation("Remove an author")
-    public ResponseEntity<Void> deleteAuthor(@PathVariable(value = "id") @NotNull Long id) {
+    public ResponseEntity<AuthorsDto> deleteAuthor(@PathVariable @NotNull Long id) {
         authorService.deleteAuthors(id);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.noContent().build();
     }
 
 }
