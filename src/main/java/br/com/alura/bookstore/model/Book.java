@@ -3,6 +3,7 @@ package br.com.alura.bookstore.model;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
 
 @Getter
@@ -31,4 +32,10 @@ public class Book {
     @ManyToOne
     private Author author;
 
+    public void updateBookInformation(String title, Integer numberOfPages, LocalDate releaseDate, @NotBlank String author) {
+        this.title=title;
+        this.numberOfPages=numberOfPages;
+        this.releaseDate=releaseDate;
+        this.author= this.author;
+    }
 }

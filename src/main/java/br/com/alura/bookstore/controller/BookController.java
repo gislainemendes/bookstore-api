@@ -1,7 +1,6 @@
 package br.com.alura.bookstore.controller;
 
-import br.com.alura.bookstore.dto.BooksDto;
-import br.com.alura.bookstore.dto.BooksFormDto;
+import br.com.alura.bookstore.dto.*;
 import br.com.alura.bookstore.service.BookService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -33,8 +32,9 @@ public class BookController {
 
     @GetMapping("/id/{id}")
     @ApiOperation("Book details")
-    public Optional<BooksDto> getBookById(@PathVariable(value="id") @NotNull Long id){
-        return bookService.findBookById(id);
+    public ResponseEntity<BooksDto> getBookById(@PathVariable @NotNull Long id) {
+        BooksDto dto = bookService.findBookById(id);
+        return ResponseEntity.ok(dto);
     }
 
     @PostMapping
@@ -47,11 +47,18 @@ public class BookController {
         return ResponseEntity.created(uri).body(booksDto);
     }
 
+    @PutMapping
+    @ApiOperation("Update a book")
+    public ResponseEntity<BooksDto> updateBook(@RequestBody @Valid UpdateBooksFormDto dto) {
+        BooksDto updateBooksDto = bookService.updateBooks(dto);
+        return ResponseEntity.ok(updateBooksDto);
+    }
+
     @DeleteMapping("/id/{id}")
     @ApiOperation("Remove a book")
-    public ResponseEntity<Void> deleteBook(@PathVariable(value="id") @NotNull Long id) {
+    public ResponseEntity<BooksDto> deleteBook(@PathVariable @NotNull Long id) {
         bookService.deleteBook(id);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.noContent().build();
     }
 
 }
