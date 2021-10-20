@@ -13,6 +13,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
@@ -37,7 +38,7 @@ public class AuthorService {
     }
 
     public AuthorsDto findAuthorById(Long id) {
-        Author author = authorRepository.getById(id);
+        Author author = authorRepository.findById(id).orElseThrow(EntityNotFoundException::new);
         return modelMapper.map(author, AuthorsDto.class);
     }
 
