@@ -2,8 +2,10 @@ package br.com.alura.bookstore.service;
 
 import br.com.alura.bookstore.dto.AuthorsDto;
 import br.com.alura.bookstore.dto.AuthorsFormDto;
+import br.com.alura.bookstore.model.Author;
 import br.com.alura.bookstore.repository.AuthorRepository;
 import br.com.alura.bookstore.repository.BookRepository;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -12,6 +14,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -44,9 +47,12 @@ class AuthorServiceTest {
         assertEquals(authorsFormDto.getCurriculo(), dto.getCurriculo());
     }
 
-//    @Test
-//    void findAllAuthors() {
-//    }
+
+    @Test
+    void shouldFindAllAuthors() {
+        List<Author> authors = authorRepository.findAll();
+        assertTrue(authors.isEmpty());
+    }
 //
 //    @Test
 //    void findAuthorById() {
