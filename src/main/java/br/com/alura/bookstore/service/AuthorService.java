@@ -10,20 +10,18 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class AuthorService {
 
     private final BookRepository bookRepository;
-    private AuthorRepository authorRepository;
-    private ModelMapper modelMapper = new ModelMapper();
+    private final AuthorRepository authorRepository;
+    private final ModelMapper modelMapper = new ModelMapper();
 
 
     @Autowired
