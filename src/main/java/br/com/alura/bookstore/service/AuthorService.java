@@ -59,6 +59,7 @@ public class AuthorService {
     @Transactional
     public AuthorsDto updateAuthors(UpdateAuthorsFormDto dto) {
         Author author = authorRepository.getById(dto.getId());
+        if(author==null){throw new IllegalArgumentException("An author with this Id does not exist!");}
         author.updateAuthorInformation(dto.getName(), dto.getEmail(), dto.getBirthDate(), dto.getCurriculo());
         return modelMapper.map(author, AuthorsDto.class);
     }
