@@ -38,4 +38,11 @@ public class Book {
         this.releaseDate=releaseDate;
         this.author= this.author;
     }
+
+    public Book(String title, LocalDate releaseDate, Integer numberOfPages, Author author) {
+        this.title = title;
+        this.releaseDate = releaseDate;
+        this.numberOfPages = numberOfPages;
+        this.author = author;
+    }
 }

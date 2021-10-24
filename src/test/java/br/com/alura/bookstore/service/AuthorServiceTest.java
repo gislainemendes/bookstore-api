@@ -150,7 +150,6 @@ class AuthorServiceTest {
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
-
     @Test
     void shouldReturnDifferentObjectWithSameValuesWhenUpdateAnAuthor() {
 
@@ -174,7 +173,6 @@ class AuthorServiceTest {
 
         assertThat(dto).isNotSameAs(update);
     }
-
 
     @Test
     void shouldThrowIllegalArgumentExceptionWhenToUpdateAnAuthorTheIdDoesNotExist() {

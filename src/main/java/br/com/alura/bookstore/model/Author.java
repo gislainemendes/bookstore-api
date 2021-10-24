@@ -37,4 +37,11 @@ public class Author {
         this.birthDate = birthDate;
         this.curriculo = curriculo;
     }
+
+    public Author(String name, String email, LocalDate birthDate, String curriculo) {
+        this.name = name;
+        this.email = email;
+        this.birthDate = birthDate;
+        this.curriculo = curriculo;
+    }
 }
