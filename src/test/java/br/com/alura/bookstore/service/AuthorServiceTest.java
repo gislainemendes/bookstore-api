@@ -10,7 +10,12 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 
 import javax.persistence.EntityNotFoundException;
 import java.time.LocalDate;
@@ -20,7 +25,9 @@ import java.util.Optional;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.when;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class AuthorServiceTest {
@@ -162,7 +169,7 @@ class AuthorServiceTest {
 
         Author author = new Author(1L, "AuthorTestA", null, null, null);
 
-        when(authorRepository.getById(1L)).thenReturn((author));
+        when(authorRepository.getById(anyLong())).thenReturn((author));
 
         AuthorsDto dto = authorService.updateAuthors(update);
 
@@ -188,6 +195,32 @@ class AuthorServiceTest {
         assertThatThrownBy(() -> {
             authorService.updateAuthors(update);
         }).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void shouldReturnAllAuthorsOfDatabase() {
+        Author authorA = new Author(1L, "AuthorA", "authorA@gmail.com", LocalDate.of(1989, 03, 12), "curriculo Teste");
+        Author authorB = new Author(2L, "AuthorB", "authorB@gmail.com", LocalDate.of(1989, 03, 13), "curriculo Teste");
+        Author authorC = new Author(3L, "AuthorC", "authorC@gmail.com", LocalDate.of(1989, 03, 14), "curriculo Teste");
+        PageImpl<Author> authorPage = new PageImpl<>(List.of(authorA, authorB, authorC));
+        Pageable pageRequest = mock(Pageable.class);
+
+        when(authorRepository.findAll(any(Pageable.class))).thenReturn(authorPage);
+
+        Page<AuthorsDto> authorsDto = authorService.findAllAuthors(pageRequest);
+
+        List<AuthorsDto> authorDtoList = authorsDto.getContent();
+        assertThat(authorDtoList.size()).isEqualTo(3);
+        assertThat(authorDtoList.get(0).getName()).isEqualTo("AuthorA");
+    }
+
+    @Test
+    void shouldDeleteAnAuthorById() {
+        Long id = 1L;
+        authorService.deleteAuthors(id);
+
+        verify(bookRepository).deleteByAuthor_Id(anyLong());
+        verify(authorRepository).deleteById(anyLong());
     }
 
 }
