@@ -28,7 +28,7 @@ public class AuthorController {
 
     @GetMapping
     @ApiOperation("List all authors")
-    public Page<AuthorsDto> getAllAuthorsById(Pageable pageable) {
+    public Page<AuthorsDto> getAllAuthors(Pageable pageable) {
         return authorService.findAllAuthors(pageable);
     }
 

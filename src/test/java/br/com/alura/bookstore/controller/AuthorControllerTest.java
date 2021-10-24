@@ -6,11 +6,15 @@ import br.com.alura.bookstore.dto.UpdateAuthorsFormDto;
 import br.com.alura.bookstore.model.Author;
 import br.com.alura.bookstore.repository.AuthorRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.assertj.core.api.ListAssert;
+import org.hamcrest.Matcher;
+import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
@@ -23,6 +27,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.hamcrest.Matchers.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -35,7 +40,6 @@ class AuthorControllerTest {
 
     @Autowired
     private MockMvc mvc;
-
 
     @Autowired
     private ObjectMapper objectMapper;
@@ -152,7 +156,7 @@ class AuthorControllerTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(authorDtoJson)
         ).andExpect(status().isOk()
-        ).andExpect(content().json(authorDtoJson));
+        ).andExpect(content().json(authorDtoResponse));
 
     }
 
@@ -179,6 +183,56 @@ class AuthorControllerTest {
 
     }
 
+    @Test
+    void shouldDeleteAnAuthorWhenIdExists() throws Exception {
+        Author authorA = new Author(null, "AuthorA", "authorA@gmail.com", LocalDate.of(1989, 03, 12), "curriculo Teste");
+        authorRepository.save(authorA);
+
+        Long id = authorA.getId();
+
+        List<Author> authorsBefore = authorRepository.findAll();
+
+        mvc.perform(
+                delete("/authors/id/" + id)
+        ).andExpect(status().isNoContent()
+        ).andDo(MockMvcResultHandlers.print());
+
+        assertThat(authorsBefore).hasSize(1);
+
+        assertThat(authorRepository.findAll()).hasSize(0);
+    }
+
+    @Test
+    void shouldGetAllAuthorsWhenIdExists() throws Exception{
+        Author authorA = new Author(
+                null, "AuthorA",
+                "authorA@gmail.com",
+                LocalDate.of(1989, 03, 12),
+                "curriculo Teste");
+
+        Author authorB = new Author(
+                null, "AuthorB",
+                "authorB@gmail.com",
+                LocalDate.of(1988, 05, 12),
+                "curriculo Teste2");
+
+        authorRepository.saveAll(List.of(authorA, authorB));
+
+
+        mvc.perform(
+                get("/authors/")
+                        .param("page", "0")
+                        .param("size", "1")
+        ).andExpect(status().isOk()
+        ).andExpect(jsonPath("$.content", hasSize(equalTo(1)))
+        ).andExpect(jsonPath("$.content[0].name", equalTo("AuthorA"))
+        ).andExpect(jsonPath("$.pageable.pageNumber" , equalTo(0))
+        ).andExpect(jsonPath("$.pageable.pageSize", equalTo(1))
+        ).andExpect(jsonPath("$.totalPages", equalTo(2))
+        ).andExpect(jsonPath("$.totalElements", equalTo(2))
+        ).andDo(MockMvcResultHandlers.print());
+
+    }
 
 }
 
