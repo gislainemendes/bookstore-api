@@ -2,7 +2,8 @@
 
 Projeto proposto para o Bootcamp de Java da ALURA CURSOS
 
-**Módulo 2 -** Neste módulo foi utilizado Spring Boot para criação de uma API Rest
+## Módulo 2
+Neste módulo foi utilizado Spring Boot para criação de uma API Rest
 
 
 ***Funcionalidades deste módulo:***
@@ -25,7 +26,8 @@ Projeto proposto para o Bootcamp de Java da ALURA CURSOS
     4- O número de páginas deve ser maior ou igual a 100.
     
     
-**Módulo 3 -** Neste módulo foi implementada a camada de persistência na API da livraria, substituindo todo o código que simulava um banco de dados em memória.
+## Módulo 3 
+Neste módulo foi implementada a camada de persistência na API da livraria, substituindo todo o código que simulava um banco de dados em memória.
 Deve ser adicionado o módulo do Spring Data JPA, como como o driver de algum banco de dados, como por exemplo o MySQL.
 
 Será necessário realizar as configurações do banco via propriedades no arquivo application.properties, bem como realizar o mapeamento das entidades JPA da API.
@@ -42,3 +44,23 @@ Deverá ser utilizado o FlyWay como ferramenta de migration, para o controle da 
 
 ![image](https://user-images.githubusercontent.com/63201229/136712891-bf45a9e6-84df-43a9-b836-260d1ffb64d8.png)
 
+
+## Módulo 4 
+Neste módulo foi criada uma classe com métodos para tratamento dos erros: 400, 404 e 500, bem como classes DTO para representar os erros de maneira mais simplificada.
+
+Foram escritos testes automatizados para as classes controller, repository e service da API, utilizando para isso as bibliotecas JUnit, AssertJ e Mockito, bem como os recursos de testes do Spring Boot.
+
+Foi utilizado também o Swagger como ferramenta para geração automatizada de documentação da API, sendo criada uma classe para realizar as suas configurações.
+
+
+***Funcionalidades deste módulo:***
+* Além de implementar os recursos citados anteriormente, foram implementadas novas funcionalidades na API, que servirão para completar o CRUD de autores e livros.
+
+Funcionalidades:
+
+* Atualização dos dados de um determinado autor
+* Exclusão de um determinado autor
+* Detalhamento de um determinado autor
+* Atualização dos dados de um determinado livro
+* Exclusão de um determinado livro
+* Detalhamento de um determinado livro
