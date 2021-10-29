@@ -18,7 +18,9 @@ public class BookService {
 
     @Autowired
     private BookRepository bookRepository;
-    private ModelMapper modelMapper = new ModelMapper();
+
+    @Autowired
+    private ModelMapper modelMapper;
 
     @Autowired
     private AuthorService authorService;

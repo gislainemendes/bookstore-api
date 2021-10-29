@@ -21,8 +21,10 @@ public class AuthorService {
 
     private final BookRepository bookRepository;
     private final AuthorRepository authorRepository;
-    private final ModelMapper modelMapper = new ModelMapper();
 
+
+    @Autowired
+    private ModelMapper modelMapper;
 
     @Autowired
     public AuthorService(AuthorRepository authorRepository, BookRepository bookRepository) {
