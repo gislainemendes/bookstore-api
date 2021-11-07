@@ -38,8 +38,8 @@ public class TokenFilterVerification extends OncePerRequestFilter {
         boolean validToken = tokenService.isValid(token);
         if (validToken) {
             Long userId = tokenService.extractUserId(token);
-            User loggedInUser = userRepository.getById(userId);
-            Authentication authentication = new UsernamePasswordAuthenticationToken(loggedInUser, null, null);
+            User loggedInUser = userRepository.findByIdWithProfiles(userId).get();
+            Authentication authentication = new UsernamePasswordAuthenticationToken(loggedInUser, null, loggedInUser.getAuthorities());
             SecurityContextHolder.getContext().setAuthentication(authentication);
         }
         filterChain.doFilter(request, response);

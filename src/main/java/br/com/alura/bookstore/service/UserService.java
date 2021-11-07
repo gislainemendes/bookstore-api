@@ -2,7 +2,9 @@ package br.com.alura.bookstore.service;
 
 import br.com.alura.bookstore.dto.UserDto;
 import br.com.alura.bookstore.dto.UserFormDto;
+import br.com.alura.bookstore.model.Profile;
 import br.com.alura.bookstore.model.User;
+import br.com.alura.bookstore.repository.ProfileRepository;
 import br.com.alura.bookstore.repository.UserRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,9 @@ public class UserService {
     private UserRepository userRepository;
 
     @Autowired
+    private ProfileRepository profileRepository;
+
+    @Autowired
     private ModelMapper modelMapper;
 
     @Autowired
@@ -33,6 +38,9 @@ public class UserService {
     @Transactional
     public UserDto saveUser(UserFormDto userFormDto){
         User user = modelMapper.map(userFormDto, User.class);
+
+        Profile profile = profileRepository.getById(userFormDto.getProfileId());
+        user.addProfile(profile);
 
         String password = new Random().nextInt(999999) + "";
         user.setPassword(bCryptPasswordEncoder.encode(password));

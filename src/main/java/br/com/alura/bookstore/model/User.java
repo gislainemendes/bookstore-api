@@ -5,7 +5,9 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 @Getter
 @Setter
@@ -23,9 +25,15 @@ public class User implements UserDetails {
     private String login;
     private String password;
 
+    @ManyToMany
+    @JoinTable(name = "user_profiles",
+        joinColumns = @JoinColumn(name = "user_id"),
+        inverseJoinColumns = @JoinColumn(name="profile_id"))
+    private List<Profile> profiles = new ArrayList<>();
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return this.profiles;
     }
 
     @Override
@@ -56,5 +64,9 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public void addProfile(Profile profile) {
+        this.profiles.add(profile);
     }
 }

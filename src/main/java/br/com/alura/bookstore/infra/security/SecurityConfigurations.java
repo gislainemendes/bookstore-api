@@ -47,6 +47,7 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/auth").permitAll()
+                .antMatchers("/users/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and().csrf().disable()
@@ -66,4 +67,8 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
                         "/swagger-ui.html",
                         "/webjars/**");
     }
+//
+//    public static void main(String[] args){
+//        System.out.println(new BCryptPasswordEncoder().encode("123456"));
+//    }
 }
