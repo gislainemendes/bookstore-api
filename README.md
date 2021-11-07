@@ -64,3 +64,15 @@ Funcionalidades:
 * Atualização dos dados de um determinado livro
 * Exclusão de um determinado livro
 * Detalhamento de um determinado livro
+
+
+## Módulo 5
+Neste módulo foi implementado código para ter um controle de autenticação e autorização na API, utilizando para isso o Spring Security em conjunto com a biblioteca JJWT, para assim seguir o modelo de autenticação Stateless via token. 
+
+
+***Requisitos:***
+Foi criada uma classe que contém os códigos para realizar as configurações de segurança, como os detalhes de autenticação e autorização da API de maneira Stateless, criadas também as classes Usuário e Perfil, implementando as interfaces do Spring Security.
+
+Criado um filter para verificação do token de acesso à API. 
+
+Os testes automatizados precisarão ser atualizados para contemplar essas mudanças relacionadas com a segurança.
