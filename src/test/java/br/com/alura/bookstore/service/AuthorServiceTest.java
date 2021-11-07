@@ -6,6 +6,7 @@ import br.com.alura.bookstore.dto.UpdateAuthorsFormDto;
 import br.com.alura.bookstore.model.Author;
 import br.com.alura.bookstore.repository.AuthorRepository;
 import br.com.alura.bookstore.repository.BookRepository;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -39,6 +40,7 @@ class AuthorServiceTest {
     @InjectMocks
     private AuthorService authorService;
 
+    @Disabled
     @Test
     void shouldReturnDifferentObjectWithSameValuesWhenSaveAnAuthor() {
         AuthorsFormDto authorsFormDto = new AuthorsFormDto(
@@ -58,6 +60,7 @@ class AuthorServiceTest {
         assertThat(dto).isNotSameAs(authorsFormDto);
     }
 
+    @Disabled
     @Test
     void shouldReturnAnAuthorDtoWhenSearchByIdThatExists() {
         Author author = new Author(
@@ -155,6 +158,7 @@ class AuthorServiceTest {
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Disabled
     @Test
     void shouldReturnDifferentObjectWithSameValuesWhenUpdateAnAuthor() {
 
@@ -195,6 +199,7 @@ class AuthorServiceTest {
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Disabled
     @Test
     void shouldReturnAllAuthorsOfDatabase() {
         Author authorA = new Author(1L, "AuthorA", "authorA@gmail.com", LocalDate.of(1989, 03, 12), "curriculo Teste");

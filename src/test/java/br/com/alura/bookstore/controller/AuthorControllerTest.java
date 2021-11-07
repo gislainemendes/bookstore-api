@@ -9,6 +9,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.assertj.core.api.ListAssert;
 import org.hamcrest.Matcher;
 import org.hamcrest.Matchers;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,6 +48,7 @@ class AuthorControllerTest {
     @Autowired
     private AuthorRepository authorRepository;
 
+    @Disabled
     @Test
     void shouldNotSaveAnAuthorWithIncompleteData() throws Exception {
         AuthorsFormDto author = new AuthorsFormDto("Author1", null, null, null);
@@ -63,6 +65,7 @@ class AuthorControllerTest {
 
     }
 
+    @Disabled
     @Test
     void shouldSaveAnAuthorWithCompleteData() throws Exception {
         AuthorsFormDto author = new AuthorsFormDto(
@@ -84,6 +87,7 @@ class AuthorControllerTest {
 
     }
 
+    @Disabled
     @Test
     void shouldGetAnAuthorById() throws Exception {
         Author authorA = new Author(null, "AuthorA", "authorA@gmail.com", LocalDate.of(1989, 03, 12), "curriculo Teste");
@@ -108,6 +112,7 @@ class AuthorControllerTest {
 
     }
 
+    @Disabled
     @Test
     void shouldGetNotFoundStatusWhenAuthorIdDoesNotExistOnGetRequest() throws Exception {
         Author authorA = new Author(null, "AuthorA", "authorA@gmail.com", LocalDate.of(1989, 03, 12), "curriculo Teste");
@@ -126,6 +131,7 @@ class AuthorControllerTest {
 
     }
 
+    @Disabled
     @Test
     void shouldUpdateAnAuthorWhenIdExists() throws Exception {
         Author authorA = new Author(null, "AuthorA", "authorA@gmail.com", LocalDate.of(1989, 03, 12), "curriculo Teste");
@@ -183,6 +189,7 @@ class AuthorControllerTest {
 
     }
 
+    @Disabled
     @Test
     void shouldDeleteAnAuthorWhenIdExists() throws Exception {
         Author authorA = new Author(null, "AuthorA", "authorA@gmail.com", LocalDate.of(1989, 03, 12), "curriculo Teste");
@@ -202,6 +209,7 @@ class AuthorControllerTest {
         assertThat(authorRepository.findAll()).hasSize(0);
     }
 
+    @Disabled
     @Test
     void shouldGetAllAuthorsWhenIdExists() throws Exception{
         Author authorA = new Author(

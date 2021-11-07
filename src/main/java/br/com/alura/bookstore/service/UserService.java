@@ -38,6 +38,7 @@ public class UserService {
     @Transactional
     public UserDto saveUser(UserFormDto userFormDto){
         User user = modelMapper.map(userFormDto, User.class);
+        user.setId(null);
 
         Profile profile = profileRepository.getById(userFormDto.getProfileId());
         user.addProfile(profile);
