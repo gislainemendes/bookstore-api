@@ -71,7 +71,7 @@ Neste módulo foi implementado código para ter um controle de autenticação e 
 
 
 ***Requisitos:***
-Foi criada uma classe que contém os códigos para realizar as configurações de segurança, como os detalhes de autenticação e autorização da API de maneira Stateless, criadas também as classes Usuário e Perfil, implementando as interfaces do Spring Security.
+* Foi criada uma classe que contém os códigos para realizar as configurações de segurança, como os detalhes de autenticação e autorização da API de maneira Stateless, criadas também as classes Usuário e Perfil, implementando as interfaces do Spring Security.
 
 Criado um filter para verificação do token de acesso à API. 
 
