@@ -20,10 +20,9 @@ public class BookService {
     private BookRepository bookRepository;
 
     @Autowired
-    private ModelMapper modelMapper;
-
-    @Autowired
     private AuthorService authorService;
+
+    private final ModelMapper modelMapper = new ModelMapper();
 
     public Page<BooksDto> findAllBooks(Pageable pageable) {
         Page<Book> books = bookRepository.findAll(pageable);
