@@ -12,6 +12,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -40,7 +41,6 @@ class AuthorServiceTest {
     @InjectMocks
     private AuthorService authorService;
 
-    @Disabled
     @Test
     void shouldReturnDifferentObjectWithSameValuesWhenSaveAnAuthor() {
         AuthorsFormDto authorsFormDto = new AuthorsFormDto(
@@ -60,7 +60,6 @@ class AuthorServiceTest {
         assertThat(dto).isNotSameAs(authorsFormDto);
     }
 
-    @Disabled
     @Test
     void shouldReturnAnAuthorDtoWhenSearchByIdThatExists() {
         Author author = new Author(
@@ -158,7 +157,6 @@ class AuthorServiceTest {
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
-    @Disabled
     @Test
     void shouldReturnDifferentObjectWithSameValuesWhenUpdateAnAuthor() {
 
@@ -199,7 +197,6 @@ class AuthorServiceTest {
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
-    @Disabled
     @Test
     void shouldReturnAllAuthorsOfDatabase() {
         Author authorA = new Author(1L, "AuthorA", "authorA@gmail.com", LocalDate.of(1989, 03, 12), "curriculo Teste");
