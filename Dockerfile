@@ -6,4 +6,5 @@ COPY target/*.jar /app/bookstore-api.jar
 
 EXPOSE 8080
 
-CMD java -XX:+UseContainerSupport -jar bookstore-api.jar
+CMD java -XX:+UseContainerSupport -Xmx512m -Dserver.port=${PORT} -jar bookstore-api.jar
+
