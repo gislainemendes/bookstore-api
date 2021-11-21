@@ -3,7 +3,6 @@ package br.com.alura.bookstore.service;
 import br.com.alura.bookstore.dto.UserDto;
 import br.com.alura.bookstore.dto.UserFormDto;
 import br.com.alura.bookstore.infra.SendEmail;
-import br.com.alura.bookstore.infra.SendEmailInterface;
 import br.com.alura.bookstore.model.Profile;
 import br.com.alura.bookstore.model.User;
 import br.com.alura.bookstore.repository.ProfileRepository;
@@ -34,7 +33,7 @@ public class UserService {
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
-    private SendEmailInterface sendEmail;
+    private SendEmail sendEmail;
 
     public Page<UserDto> findAllUsers(Pageable pageable) {
         return userRepository.findAll(pageable).map(u -> modelMapper.map(u, UserDto.class));
