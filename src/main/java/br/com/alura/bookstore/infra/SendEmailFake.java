@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @Profile({"default", "test"})
-public class SendEmailFake implements SendEmailInterface {
+public class SendEmailFake implements SendEmail {
 
     @Async
     public void sendEmail(String recipient, String subject, String message) {
