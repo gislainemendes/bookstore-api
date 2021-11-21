@@ -2,6 +2,15 @@
 
 Projeto proposto para o Bootcamp de Java da ALURA CURSOS
 
+***Observações:***
+O módulo 1 consistia em criar uma aplicação Web em Java para gestão de uma livraria online utilizando Servlet, JSP e JDBC.
+
+Link do repositório que contém o desenvolvimento proposto para o módulo 1: 
+https://github.com/gislainemendes/bookstore
+
+A partir do módulo 2 o objetivo é recriar a mesma aplicação utilizando Spring Boot.   
+
+
 ## Módulo 2
 Neste módulo foi utilizado Spring Boot para criação de uma API Rest
 
