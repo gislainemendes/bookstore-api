@@ -24,6 +24,7 @@ public class User implements UserDetails {
     private String name;
     private String login;
     private String password;
+    private String email;
 
 
     public User(String name, String login, String password) {
