@@ -109,7 +109,7 @@ Foram criadas duas classes para o envio de emails, sendo que uma delas foi ativa
 
 
 ## Encerramento
-* O módulo 6 encerra o projeto proposto para o Bootcamp Java da Alura cursos. 
+* O módulo 6 encerra o projeto proposto para o Bootcamp Java da ALURA CURSOS.
 
 
 ***Conclusão***
