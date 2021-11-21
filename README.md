@@ -76,3 +76,18 @@ Neste módulo foi implementado código para ter um controle de autenticação e 
 Criado um filter para verificação do token de acesso à API. 
 
 Os testes automatizados precisarão ser atualizados para contemplar essas mudanças relacionadas com a segurança.
+
+
+## Módulo 6
+Neste módulo foi realizado deploy da API do projeto livraria no Heroku utilizando Docker.
+Também foi configurado o GitHub Actions, para implementar os conceitos de integração e deploy contínuos.
+
+
+***Requisitos***
+* Foi necessário criar o arquivo DockerFile no projeto, além de realizar as configurações das variáveis de ambiente para que o deploy fosse realizado sem problemas no Heroku.
+Também foi necessário criar o arquivo .github/workflows/ci-testes.yml para realizar as configurações do GitHub Actions no projeto e com isso conseguir disparar o processo de execução automatizada dos testes, bem como o deploy automatizado no Heroku sempre que um push com commits for enviado para este repositório no GitHub.
+
+
+***Funcionalidades deste módulo***
+* Além de implementar os recursos citados anteriormente, foi implementada a funcionalidade de envio de email, de maneira assíncrona, ao cadastrar um novo usuário na API.
+Foram criadas duas classes para o envio de emails, sendo que uma delas foi ativada apenas em ambiente de produção e a outra, que não envia email de verdade e apenas imprime as informações do email no console, foi ativada nos ambientes de desenvolvimento e testes. 
