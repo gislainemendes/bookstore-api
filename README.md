@@ -3,12 +3,17 @@
 Projeto proposto para o Bootcamp de Java da ALURA CURSOS
 
 ***Observações:***
-O módulo 1 consistia em criar uma aplicação Web em Java para gestão de uma livraria online utilizando Servlet, JSP e JDBC.
+* O módulo 1 consistia em criar uma aplicação Web em Java para gestão de uma livraria online utilizando Servlet, JSP e JDBC.
 
 Link do repositório que contém o desenvolvimento proposto para o módulo 1: 
 https://github.com/gislainemendes/bookstore
 
-A partir do módulo 2 o objetivo é recriar a mesma aplicação utilizando Spring Boot.   
+* A partir do módulo 2 o objetivo é recriar a mesma aplicação utilizando Spring Boot. 
+
+Link da API desenvolvida para este bootcamp - deploy realizado no Heroku:
+https://bookstore-api-gislaine.herokuapp.com/swagger-ui.html
+
+A seguir, descrição dos requisitos utilizados para o desenvolvimento da API, organizados em módulos: 
 
 
 ## Módulo 2
@@ -21,8 +26,8 @@ Neste módulo foi utilizado Spring Boot para criação de uma API Rest
 
 
 ***Requisitos:***
-* O projeto deve ser uma API Rest utilizando o Spring Boot, criada pelo site Spring Initializr;
-* O projeto deve utilizar as bibliotecas Lombok, ModelMapper e Bean Validation;
+* Criar uma API Rest utilizando o Spring Boot, gerada pelo site Spring Initializr;
+* Utilizar as bibliotecas Lombok, ModelMapper e Bean Validation;
 * As funcionalidades devem ser implementadas no modelo de API, consumindo e devolvendo as informações no formato JSON;
 * Para o cadastro de livros:
 
@@ -39,9 +44,9 @@ Neste módulo foi utilizado Spring Boot para criação de uma API Rest
 Neste módulo foi implementada a camada de persistência na API da livraria, substituindo todo o código que simulava um banco de dados em memória.
 Deve ser adicionado o módulo do Spring Data JPA, como como o driver de algum banco de dados, como por exemplo o MySQL.
 
-Será necessário realizar as configurações do banco via propriedades no arquivo application.properties, bem como realizar o mapeamento das entidades JPA da API.
+Foi necessário realizar as configurações do banco via propriedades no arquivo application.properties, bem como realizar o mapeamento das entidades JPA da API.
 
-Deverá ser utilizado o FlyWay como ferramenta de migration, para o controle da evolução do schema do banco  de dados da API. Necessário também utilizar o recurso de paginação e ordenação nas funcionalidades de listagem de autores e de livros.
+Foi utilizado o FlyWay como ferramenta de migration, para o controle da evolução do schema do banco de dados da API. Foi necessário também utilizar o recurso de paginação e ordenação nas funcionalidades de listagem de autores e de livros.
 
 
 ***Funcionalidades deste módulo:***
