@@ -5,15 +5,31 @@ Projeto proposto para o Bootcamp de Java da ALURA CURSOS
 ***Observações:***
 * O módulo 1 consistia em criar uma aplicação Web em Java para gestão de uma livraria online utilizando Servlet, JSP e JDBC.
 
-Link do repositório que contém o desenvolvimento proposto para o módulo 1: 
+* Link do repositório que contém o desenvolvimento proposto para o módulo 1: 
 https://github.com/gislainemendes/bookstore
 
 * A partir do módulo 2 o objetivo é recriar a mesma aplicação utilizando Spring Boot. 
 
-Link da API desenvolvida para este bootcamp - deploy realizado no Heroku:
+* Link da API desenvolvida para este bootcamp - deploy realizado no Heroku:
 https://bookstore-api-gislaine.herokuapp.com/swagger-ui.html
 
-A seguir, descrição dos requisitos utilizados para o desenvolvimento da API, organizados em módulos: 
+
+
+* Disponibilizo um usuário e senha para testes na API. Com este acesso é possível cadastrar, editar, consultar e deletar autores e livros. Para realizar estas operações é necessário primeiramente realizar a etapa de autenticação que irá gerar um token de acesso. Desta forma, é possível utilizar o token para realizar as demais operações.
+
+* Informações para acesso: 
+**login:** gislaine,
+**senha:** 488396
+
+* Para cadastrar um autor, por exemplo, é necessário informar a palavra Bearer + o token gerado na etapa de autenticação e também informar os dados básicos do autor no cadastro, conforme imagem a seguir:
+
+![image](https://user-images.githubusercontent.com/63201229/142778863-c136370f-d611-403b-8f58-27a8a2dd5b54.png)
+
+
+
+## ETAPAS PARA A CRIAÇÃO DE API REST: 
+
+* A seguir, descrição dos requisitos utilizados para o desenvolvimento da API, organizados em módulos: 
 
 
 ## Módulo 2
