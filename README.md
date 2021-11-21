@@ -100,3 +100,13 @@ Também foi necessário criar o arquivo .github/workflows/ci-testes.yml para rea
 ***Funcionalidades deste módulo***
 * Além de implementar os recursos citados anteriormente, foi implementada a funcionalidade de envio de email, de maneira assíncrona, ao cadastrar um novo usuário na API.
 Foram criadas duas classes para o envio de emails, sendo que uma delas foi ativada apenas em ambiente de produção e a outra, que não envia email de verdade e apenas imprime as informações do email no console, foi ativada nos ambientes de desenvolvimento e testes. 
+
+
+
+## Encerramento
+* O módulo 6 encerra o projeto proposto para o Bootcamp Java da Alura cursos. 
+
+
+***Conclusão***
+
+Considero que participar deste bootcamp foi uma ótima experiência. Pude ter contato com diversos recursos usados na construção de uma API Rest, e realizar desafios que simulam de maneira muito próxima o dia a dia de um desenvolvedor backend. 
