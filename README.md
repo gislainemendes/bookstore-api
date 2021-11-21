@@ -17,9 +17,10 @@ https://bookstore-api-gislaine.herokuapp.com/swagger-ui.html
 
 * Disponibilizo um usuário e senha para testes na API. Com este acesso é possível cadastrar, editar, consultar e deletar autores e livros. Para realizar estas operações é necessário primeiramente realizar a etapa de autenticação que irá gerar um token de acesso. Desta forma, é possível utilizar o token para realizar as demais operações.
 
-* Informações para acesso: 
+* Informações de acesso para cadastro, edição, consulta e remoção de autores e livros (este acesso não possui perfil de admin, e portanto, não pode ser utilizado para cadastro e listagem de usuários): 
 **login:** gislaine,
 **senha:** 488396
+
 
 * Para cadastrar um autor, por exemplo, é necessário informar a palavra Bearer + o token gerado na etapa de autenticação e também informar os dados básicos do autor no cadastro, conforme imagem a seguir:
 
@@ -27,7 +28,7 @@ https://bookstore-api-gislaine.herokuapp.com/swagger-ui.html
 
 
 
-## ETAPAS PARA A CRIAÇÃO DE API REST: 
+## ETAPAS PARA A CRIAÇÃO DA API REST: 
 
 * A seguir, descrição dos requisitos utilizados para o desenvolvimento da API, organizados em módulos: 
 
